@@ -1,0 +1,66 @@
+:root { --bg:#f6f7f9; --btn:#4caf50; --text:#111; --muted:#e7e9ee; }
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+}
+
+.container { width: min(760px, 94vw); text-align: center; padding: 24px; }
+h1 { margin: 0 0 12px; }
+.subhead { margin: 28px 0 12px; font-size: 1.15rem; }
+
+.btn {
+  appearance: none; border: 0; border-radius: 10px;
+  padding: 10px 16px; font-size: 1rem; background: var(--btn);
+  color: #fff; cursor: pointer;
+}
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn:active { transform: translateY(1px); }
+.btn.ghost { background: #fff; color: #222; border: 1px solid var(--muted); }
+
+.hint { opacity: .65; font-size: .9rem; margin-top: 10px; }
+kbd {
+  background: #fff; border: 1px solid #dcdcdc; border-radius: 4px;
+  padding: 0 6px; font-size: .85em;
+}
+
+/* Wheel */
+.wheelArea {
+  position: relative;
+  width: 420px; height: 420px;
+  margin: 10px auto 8px;
+}
+#wheel {
+  width: 100%; height: 100%;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08), inset 0 0 0 6px #fff;
+  transition: transform 5s cubic-bezier(.17,.89,.12,1.02);
+  /* transform is set dynamically from JS */
+}
+.pointer {
+  position: absolute;
+  left: 50%; top: -2px;
+  width: 0; height: 0;
+  transform: translateX(-50%);
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 18px solid black; /* a small pink pointer */
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.2));
+}
+
+/* Chips (visible options) */
+.options { margin-top: 12px; }
+.optionsGrid {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.chip {
+  background: #fff; border: 1px solid var(--muted);
+  border-radius: 999px; padding: 6px
+}

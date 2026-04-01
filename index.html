@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What Should I Eat?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>What Should I Eat?</h1>
+
+    <!-- Spinning wheel -->
+    <section class="wheelArea" aria-label="Spinning wheel">
+      <canvas id="wheel" width="420" height="420"></canvas>
+      <div class="pointer" aria-hidden="true"></div>
+    </section>
+
+    <button id="spinBtn" class="btn" type="button">Feeling Lucky</button>
+    <p class="hint">Tip: press <kbd>Enter</kbd> to spin.</p>
+
+    <!-- Visible options as chips -->
+    <section class="options">
+      <h2 class="subhead">Options</h2>
+      <div id="optionsGrid" class="optionsGrid" aria-label="Available options"></div>
+    </section>
+
+    <!-- Manager -->
+    <section class="manager">
+      <h2 class="subhead">Manage Foods</h2>
+      <form id="addForm" autocomplete="off">
+        <input id="foodInput" type="text" placeholder="Add a food (e.g., '🥙 Gyro')" />
+        <button class="btn" type="submit">Add</button>
+        <button class="btn ghost" id="resetBtn" type="button" title="Restore defaults">Reset</button>
+      </form>
+
+      <ul id="foodList" class="list" aria-label="Foods list"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
