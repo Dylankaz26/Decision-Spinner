@@ -16,6 +16,9 @@ const addForm = $("#addForm");
 const inputEl = $("#foodInput");
 const resetBtn = $("#resetBtn");
 const optionsGrid = $("#optionsGrid");
+const resultModal = document.getElementById("resultModal");
+const modalResult = document.getElementById("modalResult");
+const closeModalBtn = document.getElementById("closeModalBtn");
 
 // ----- State -----
 let foods = loadFoods();
@@ -141,7 +144,20 @@ function renderList() {
     listEl.appendChild(li);
   });
 }
+function openModal(result) {
+  modalResult.textContent = result;
+  resultModal.classList.remove("hidden");
+}
 
+function closeModal() {
+  resultModal.classList.add("hidden");
+}
+closeModalBtn.addEventListener("click", closeModal);
+resultModal.addEventListener("click", (e) => {
+  if (e.target === resultModal) {
+    closeModal();
+  }
+});
 // ----- Spin logic -----
 // We choose a target index and compute a rotation so that the
 // center of that slice lands at the pointer (top).
@@ -156,15 +172,17 @@ function spin() {
   const targetIndex = Math.floor(Math.random() * n);
   const targetCenter = targetIndex * seg + seg / 2;
 
-  const extraSpins = 5 + Math.floor(Math.random() * 4); // 5–8 spins
+  const MIN_SPINS = 6; // minimum full spins
+  const EXTRA_SPINS = Math.floor(Math.random() * 3); // randomness
+  const totalSpins = MIN_SPINS + EXTRA_SPINS;
   // Pointer is at 90° (top). We want slice center at 90°.
   // rotation we need = 90 - targetCenter
   const POINTER_DEG = -90;                 // top
 let delta = POINTER_DEG - targetCenter;  // align slice center to the top
 
-
+delta = ((delta % 360) + 360) % 360;
   // Final absolute rotation (add full spins)
-  const finalRotation = currentRotation + extraSpins * 360 + delta;
+  const finalRotation = currentRotation + totalSpins * 360 + delta;
 
   // Apply CSS rotation (smooth via transition set in CSS)
   canvas.style.transform = `rotate(${finalRotation}deg)`;
@@ -177,6 +195,7 @@ let delta = POINTER_DEG - targetCenter;  // align slice center to the top
 
     spinning = false;
     spinBtn.disabled = false;
+    openModal(foods[targetIndex]);
   };
   canvas.addEventListener("transitionend", onEnd, { once: true });
 }

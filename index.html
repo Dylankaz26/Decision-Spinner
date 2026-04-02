@@ -8,7 +8,7 @@
 </head>
 <body>
   <main class="container">
-    <h1>What Should I Eat?</h1>
+    <h1>Help Me Decide</h1>
 
     <!-- Spinning wheel -->
     <section class="wheelArea" aria-label="Spinning wheel">
@@ -16,7 +16,7 @@
       <div class="pointer" aria-hidden="true"></div>
     </section>
 
-    <button id="spinBtn" class="btn" type="button">Feeling Lucky</button>
+    <button id="spinBtn" class="btn" type="button">Spin</button>
     <p class="hint">Tip: press <kbd>Enter</kbd> to spin.</p>
 
     <!-- Visible options as chips -->
@@ -27,9 +27,9 @@
 
     <!-- Manager -->
     <section class="manager">
-      <h2 class="subhead">Manage Foods</h2>
+      <h2 class="subhead">Manage Options</h2>
       <form id="addForm" autocomplete="off">
-        <input id="foodInput" type="text" placeholder="Add a food (e.g., '🥙 Gyro')" />
+        <input id="foodInput" type="text" placeholder="Add an option" />
         <button class="btn" type="submit">Add</button>
         <button class="btn ghost" id="resetBtn" type="button" title="Restore defaults">Reset</button>
       </form>
@@ -37,7 +37,13 @@
       <ul id="foodList" class="list" aria-label="Foods list"></ul>
     </section>
   </main>
-
+<div id="resultModal" class="modal hidden">
+  <div class="modalBox">
+    <h2>You landed on</h2>
+    <p id="modalResult" class="modalResult"></p>
+    <button id="closeModalBtn" class="btn" type="button">Close</button>
+  </div>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
